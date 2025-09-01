@@ -11,13 +11,6 @@ use App\Models\Contact;
 class ContactController extends Controller
 {
     /**
-     * 性別の定数
-     */
-    private const GENDER_MALE = 1;
-    private const GENDER_FEMALE = 2;
-    private const GENDER_OTHER = 3;
-
-    /**
      * お問い合わせフォームを表示
      */
     public function index(): View
@@ -42,8 +35,7 @@ class ContactController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $contactData = $this->prepareContactDataForStore($request);
-
+        $contactData = $this->prepareContactData($request);
         Contact::create($contactData);
 
         return redirect()->route('contact.thanks');
@@ -58,7 +50,7 @@ class ContactController extends Controller
     }
 
     /**
-     * リクエストからお問い合わせデータを準備（確認画面用）
+     * リクエストからお問い合わせデータを準備
      */
     private function prepareContactData(Request $request): array
     {
@@ -69,24 +61,6 @@ class ContactController extends Controller
             'gender' => $request->gender,
             'email' => $request->email,
             'tell' => $this->formatPhoneNumber($request),
-            'address' => $request->address,
-            'building' => $request->building,
-            'detail' => $request->detail,
-        ];
-    }
-
-    /**
-     * リクエストからお問い合わせデータを準備（保存用）
-     */
-    private function prepareContactDataForStore(Request $request): array
-    {
-        return [
-            'category_id' => $request->category_id,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'gender' => $request->gender,
-            'email' => $request->email,
-            'tell' => $request->tell,
             'address' => $request->address,
             'building' => $request->building,
             'detail' => $request->detail,
@@ -119,9 +93,9 @@ class ContactController extends Controller
     public static function getGenderText(int $gender): string
     {
         return match ($gender) {
-            self::GENDER_MALE => '男性',
-            self::GENDER_FEMALE => '女性',
-            self::GENDER_OTHER => 'その他',
+            1 => '男性',
+            2 => '女性',
+            3 => 'その他',
             default => '未選択',
         };
     }

@@ -21,7 +21,7 @@
                 @csrf
                 <div class="form-group">
                     <label class="form-label">
-                        お名前 (Name) <span class="required">※</span>
+                        お名前 <span class="required">※</span>
                     </label>
                     <div class="form-input-container">
                         <div class="name-fields">
