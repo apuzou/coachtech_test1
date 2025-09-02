@@ -24,14 +24,22 @@
 
                     <div class="form-group">
                         <label for="email" class="form-label">メールアドレス</label>
-                        <input type="email" id="email" name="email" class="form-input"
-                            placeholder="例: test@example.com" value="{{ old('email') }}" required>
+                        <input type="email" id="email" name="email"
+                            class="form-input @error('email') error-input @enderror" placeholder="例: test@example.com"
+                            value="{{ old('email') }}" required>
+                        @error('email')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="password" class="form-label">パスワード</label>
-                        <input type="password" id="password" name="password" class="form-input"
-                            placeholder="例: coachtech06" required>
+                        <input type="password" id="password" name="password"
+                            class="form-input @error('password') error-input @enderror" placeholder="例: coachtech06"
+                            required>
+                        @error('password')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-actions">

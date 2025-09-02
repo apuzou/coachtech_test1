@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
@@ -22,10 +23,10 @@ class ContactController extends Controller
     /**
      * お問い合わせ確認画面を表示
      */
-    public function confirm(Request $request): View
+    public function confirm(ContactRequest $request): View
     {
         $contactData = $this->prepareContactData($request);
-        $category = $this->getCategory($request->category_id);
+        $category = Category::find($request->category_id);
 
         return view('contact.confirm', compact('contactData', 'category'));
     }
@@ -72,19 +73,7 @@ class ContactController extends Controller
      */
     private function formatPhoneNumber(Request $request): string
     {
-        return $request->phone1 . '-' . $request->phone2 . '-' . $request->phone3;
-    }
-
-    /**
-     * カテゴリを取得
-     */
-    private function getCategory(?int $categoryId): ?Category
-    {
-        if (!$categoryId) {
-            return null;
-        }
-
-        return Category::find($categoryId);
+        return implode('-', [$request->phone1, $request->phone2, $request->phone3]);
     }
 
     /**

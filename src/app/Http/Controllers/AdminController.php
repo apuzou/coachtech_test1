@@ -10,12 +10,35 @@ use App\Models\Category;
 class AdminController extends Controller
 {
   /**
-   * 管理画面を表示
+   * 管理画面のインデックスページ
    */
   public function index(Request $request): View
   {
     $query = Contact::with('category');
 
+    // 検索・フィルター条件を適用
+    $this->applyFilters($query, $request);
+
+    $contacts = $query->orderBy('created_at', 'desc')->paginate(7);
+    $categories = Category::all();
+
+    return view('admin.admin', compact('contacts', 'categories'));
+  }
+
+  /**
+   * お問い合わせ詳細表示
+   */
+  public function show(Contact $contact): View
+  {
+    $contact->load('category');
+    return view('admin.show', compact('contact'));
+  }
+
+  /**
+   * 検索・フィルター条件を適用
+   */
+  private function applyFilters($query, Request $request): void
+  {
     // 検索条件
     if ($request->filled('search')) {
       $search = $request->search;
@@ -38,20 +61,6 @@ class AdminController extends Controller
     if ($request->filled('date')) {
       $query->whereDate('created_at', $request->date);
     }
-
-
-    $contacts = $query->orderBy('created_at', 'desc')->paginate(7);
-    $categories = Category::all();
-
-    return view('admin.admin', compact('contacts', 'categories'));
-  }
-
-  /**
-   * お問い合わせ詳細を表示
-   */
-  public function show(Contact $contact): View
-  {
-    return view('admin.show', compact('contact'));
   }
 
   /**
