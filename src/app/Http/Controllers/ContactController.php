@@ -32,6 +32,30 @@ class ContactController extends Controller
     }
 
     /**
+     * 修正ボタンがクリックされた際の処理
+     */
+    public function edit(Request $request): View
+    {
+        // 前回入力した値をセッションに保存
+        $request->session()->flash('old_input', [
+            'category_id' => $request->category_id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'gender' => $request->gender,
+            'email' => $request->email,
+            'phone1' => $request->phone1,
+            'phone2' => $request->phone2,
+            'phone3' => $request->phone3,
+            'address' => $request->address,
+            'building' => $request->building,
+            'detail' => $request->detail,
+        ]);
+
+        $categories = Category::all();
+        return view('index', compact('categories'));
+    }
+
+    /**
      * お問い合わせを保存
      */
     public function store(Request $request): RedirectResponse

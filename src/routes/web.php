@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\AuthController;
 Route::get('/', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/contact/edit', [ContactController::class, 'edit'])->name('contact.edit');
 Route::get('/contact/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
 // 認証関連

@@ -79,7 +79,22 @@
                     <input type="hidden" name="detail" value="{{ $contactData['detail'] }}">
                     <button type="submit" class="submit-button">送信</button>
                 </form>
-                <a href="{{ route('contact.index') }}" class="edit-button">修正</a>
+
+                <form action="{{ route('contact.edit') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <input type="hidden" name="category_id" value="{{ $contactData['category_id'] }}">
+                    <input type="hidden" name="first_name" value="{{ $contactData['first_name'] }}">
+                    <input type="hidden" name="last_name" value="{{ $contactData['last_name'] }}">
+                    <input type="hidden" name="gender" value="{{ $contactData['gender'] }}">
+                    <input type="hidden" name="email" value="{{ $contactData['email'] }}">
+                    <input type="hidden" name="phone1" value="{{ explode('-', $contactData['tell'])[0] ?? '' }}">
+                    <input type="hidden" name="phone2" value="{{ explode('-', $contactData['tell'])[1] ?? '' }}">
+                    <input type="hidden" name="phone3" value="{{ explode('-', $contactData['tell'])[2] ?? '' }}">
+                    <input type="hidden" name="address" value="{{ $contactData['address'] }}">
+                    <input type="hidden" name="building" value="{{ $contactData['building'] }}">
+                    <input type="hidden" name="detail" value="{{ $contactData['detail'] }}">
+                    <button type="submit" class="edit-button">修正</button>
+                </form>
             </div>
         </main>
     </div>

@@ -1,4 +1,25 @@
-/* Reset and base styles */
+/* ==========================================================================
+   Authentication Styles - Unified Design
+   ========================================================================== */
+
+/* CSS Variables */
+:root {
+    --primary-color: #8b7355;
+    --primary-hover: #7a6344;
+    --text-color: #8B7969;
+    --background-color: #f8f6f3;
+    --white: #fff;
+    --light-gray: #fafafa;
+    --border-color: #ddd;
+    --error-color: #dc3545;
+    --error-bg: #fff5f5;
+    --placeholder-color: #999;
+}
+
+/* ==========================================================================
+   Reset and Base Styles
+   ========================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,13 +28,17 @@
 
 body {
     font-family: Georgia, 'Times New Roman', serif;
-    background-color: #f8f6f3;
-    color: #8b7355;
+    background-color: var(--background-color);
+    color: var(--text-color);
     line-height: 1.6;
 }
 
+/* ==========================================================================
+   Layout Components
+   ========================================================================== */
+
 .auth-container {
-    background-color: #f8f6f3;
+    background-color: var(--background-color);
     min-height: 100vh;
 }
 
@@ -22,9 +47,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--white);
     margin-bottom: 40px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
     padding: 20px 40px;
     position: relative;
 }
@@ -33,16 +58,15 @@ body {
     font-size: 2.5rem;
     font-weight: normal;
     letter-spacing: 0.05em;
-    color: #8b7355;
+    color: var(--primary-color);
 }
 
-.login-button,
-.register-button {
+.nav-button {
     position: absolute;
     width: 80px;
     right: 60px;
     background-color: #dfdfdf;
-    color: #8b7355;
+    color: var(--primary-color);
     border: none;
     padding: 8px 16px;
     font-size: 0.9rem;
@@ -60,7 +84,10 @@ body {
     background-color: #e0e0e0;
 }
 
-/* Main content */
+/* ==========================================================================
+   Main Content
+   ========================================================================== */
+
 .main {
     border-radius: 8px;
     padding: 40px;
@@ -71,12 +98,15 @@ body {
     font-weight: 500;
     margin-bottom: 30px;
     text-align: center;
-    color: #8b7355;
+    color: var(--primary-color);
 }
 
-/* Form panel */
+/* ==========================================================================
+   Form Panel
+   ========================================================================== */
+
 .form-panel {
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 40px;
@@ -84,7 +114,10 @@ body {
     margin: 0 auto;
 }
 
-/* Form styles */
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+
 .auth-form {
     width: 100%;
 }
@@ -98,39 +131,42 @@ body {
     font-size: 0.95rem;
     font-weight: 500;
     margin-bottom: 8px;
-    color: #8b7355;
+    color: var(--primary-color);
 }
 
 .form-input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 0.95rem;
-    background-color: #fafafa;
+    background-color: var(--light-gray);
     transition: border-color 0.3s ease, background-color 0.3s ease;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .form-input:focus {
     outline: none;
-    border-color: #8b7355;
-    background-color: #fff;
+    border-color: var(--primary-color);
+    background-color: var(--white);
 }
 
 .form-input::placeholder {
-    color: #999;
+    color: var(--placeholder-color);
 }
 
-/* Submit button */
+/* ==========================================================================
+   Action Elements
+   ========================================================================== */
+
 .form-actions {
     text-align: center;
     margin-top: 30px;
 }
 
 .submit-button {
-    background-color: #8b7355;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
     padding: 12px 30px;
     font-size: 1rem;
@@ -143,28 +179,34 @@ body {
 }
 
 .submit-button:hover {
-    background-color: #7a6344;
+    background-color: var(--primary-hover);
 }
 
 .submit-button:active {
     transform: translateY(1px);
 }
 
-/* Error styles */
+/* ==========================================================================
+   Error Handling
+   ========================================================================== */
+
 .error-input {
-    border-color: #dc3545 !important;
-    background-color: #fff5f5;
+    border-color: var(--error-color) !important;
+    background-color: var(--error-bg);
 }
 
 .error-message {
-    color: #dc3545;
+    color: var(--error-color);
     font-size: 0.85rem;
     margin-top: 5px;
     padding: 5px 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Responsive design */
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
 @media (max-width: 768px) {
     .container {
         padding: 10px;

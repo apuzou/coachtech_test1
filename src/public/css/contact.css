@@ -1,4 +1,25 @@
-/* Reset and base styles */
+/* ==========================================================================
+   Contact Form Styles - Unified Design
+   ========================================================================== */
+
+/* CSS Variables */
+:root {
+    --primary-color: #8b7355;
+    --primary-hover: #7a6344;
+    --text-color: #8B7969;
+    --background-color: #f8f6f3;
+    --white: #fff;
+    --light-gray: #fafafa;
+    --border-color: #ddd;
+    --error-color: #dc3545;
+    --error-bg: #fff5f5;
+    --placeholder-color: #999;
+}
+
+/* ==========================================================================
+   Reset and Base Styles
+   ========================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,14 +28,17 @@
 
 body {
     font-family: Georgia, 'Times New Roman', serif;
-    background-color: #f8f6f3;
-    color: #8B7969;
+    background-color: var(--background-color);
+    color: var(--text-color);
     line-height: 1.6;
 }
 
+/* ==========================================================================
+   Layout Components
+   ========================================================================== */
+
 .contact-container {
-    background-color: #fff;
-    margin: 0 auto;
+    background-color: var(--white);
 }
 
 /* Header */
@@ -22,7 +46,7 @@ body {
     text-align: center;
     padding: 20px 40px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .brand {
@@ -31,7 +55,7 @@ body {
     letter-spacing: 0.05em;
 }
 
-/* Main content */
+/* Main Content */
 .contact-main {
     border-radius: 8px;
     padding: 40px;
@@ -44,13 +68,16 @@ body {
     text-align: center;
 }
 
-/* Form styles */
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+
 .contact-form {
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* Form groups */
+/* Form Groups */
 .form-group {
     display: flex;
     align-items: flex-start;
@@ -63,53 +90,54 @@ body {
     flex: 0 0 200px;
     font-size: 0.95rem;
     font-weight: 500;
-    padding-top: 12px;
+    padding-top: 8px;
     line-height: 1.4;
 }
 
 .required {
-    color: #e74c3c;
+    color: var(--error-color);
     font-weight: bold;
+    margin-left: 4px;
 }
 
+/* Form Inputs */
 .form-input,
 .form-select,
 .form-textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 0.95rem;
-    background-color: #fafafa;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.form-input-container {
-    flex: 1;
-    min-width: 0;
-}
-
-.form-input-container + .error-messages,
-.form-input-container + .error-message {
-    flex-basis: 100%;
-    margin-left: 200px;
-    margin-top: 5px;
+    background-color: var(--light-gray);
+    transition: all 0.3s ease;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
     outline: none;
-    border-color: #8b7355;
-    background-color: #fff;
+    border-color: var(--primary-color);
+    background-color: var(--white);
 }
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-    color: #999;
+    color: var(--placeholder-color);
 }
 
-/* Name fields */
+/* Form Input Container */
+.form-input-container {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ==========================================================================
+   Specialized Form Elements
+   ========================================================================== */
+
+/* Name Fields */
 .name-fields {
     display: flex;
     gap: 10px;
@@ -117,9 +145,10 @@ body {
 
 .name-fields .form-input {
     flex: 1;
+    min-width: 0;
 }
 
-/* Radio buttons */
+/* Radio Buttons */
 .radio-group {
     display: flex;
     gap: 20px;
@@ -136,14 +165,14 @@ body {
 .radio-input {
     width: auto;
     margin-right: 8px;
-    accent-color: #8b7355;
+    accent-color: var(--primary-color);
 }
 
 .radio-text {
     font-weight: normal;
 }
 
-/* Phone fields */
+/* Phone Fields */
 .phone-fields {
     display: flex;
     align-items: center;
@@ -160,7 +189,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Select wrapper */
+/* Select Wrapper */
 .select-wrapper {
     position: relative;
 }
@@ -184,60 +213,88 @@ body {
 .form-textarea {
     min-height: 120px;
     resize: vertical;
-    font-family: inherit;
 }
 
-/* Submit button */
+/* ==========================================================================
+   Action Elements
+   ========================================================================== */
+
+/* Submit Button */
 .form-actions {
     text-align: center;
     margin-top: 40px;
 }
 
 .submit-button {
-    background-color: #8b7355;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     min-width: 150px;
+    border-radius: 4px;
 }
 
 .submit-button:hover {
-    background-color: #7a6344;
+    background-color: var(--primary-hover);
 }
 
 .submit-button:active {
     transform: translateY(1px);
 }
 
-/* Error styles */
-.error-input {
-    border-color: #dc3545 !important;
-    background-color: #fff5f5;
-}
+/* ==========================================================================
+   Error Handling
+   ========================================================================== */
 
-.error-messages {
-    margin-top: 5px;
+.error-input {
+    border-color: var(--error-color) !important;
+    background-color: var(--error-bg);
 }
 
 .error-message {
-    color: #dc3545;
+    color: var(--error-color);
     font-size: 0.85rem;
     margin-top: 3px;
     padding: 2px 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: Georgia, 'Times New Roman', serif;
 }
 
-/* Responsive design */
+/* Error message positioning */
+.form-input-container + .error-messages,
+.form-input-container + .error-message {
+    flex-basis: 100%;
+    margin-left: 200px;
+    margin-top: 5px;
+}
+
+/* Name field error messages - horizontal layout (higher priority) */
+
+.name-form-group .form-input-container .error-message {
+    display: inline-block !important;
+    margin-right: 20px !important;
+    flex-basis: auto !important;
+    margin-left: 0 !important;
+    float: left !important;
+}
+
+.name-form-group .form-input-container .error-message:last-child {
+    margin-right: 0 !important;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
 @media (max-width: 768px) {
-    .container {
-        padding: 10px;
+    .contact-container {
+        margin: 10px;
     }
 
-    .main {
+    .contact-main {
         padding: 20px;
     }
 
@@ -257,6 +314,7 @@ body {
     .form-label {
         flex: none;
         padding-top: 0;
+        margin-bottom: 5px;
     }
 
     .name-fields {
@@ -276,5 +334,11 @@ body {
     .radio-group {
         flex-direction: column;
         gap: 10px;
+    }
+
+    /* Mobile error message positioning */
+    .form-input-container + .error-messages,
+    .form-input-container + .error-message {
+        margin-left: 0;
     }
 }

@@ -12,7 +12,7 @@
     <div class="auth-container">
         <header class="header">
             <div class="brand">FashionablyLate</div>
-            <a href="{{ route('register') }}" class="register-button">register</a>
+            <a href="{{ route('register') }}" class="nav-button">register</a>
         </header>
 
         <main class="main">
