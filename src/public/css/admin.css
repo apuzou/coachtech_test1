@@ -1,21 +1,45 @@
 /* ==========================================================================
    Admin Panel Styles - Unified Design
+   管理画面のスタイルシート
+   
+   このCSSファイルの役割：
+   - 管理画面全体のデザイン統一
+   - レスポンシブ対応
+   - CSS-onlyモーダルの実装
+   - テーブル・フォーム・ボタンのスタイリング
+   
+   主な機能：
+   - CSS変数を使用した色管理
+   - フラッシュメッセージのスタイリング
+   - 検索フォームのレイアウト
+   - データテーブルの見やすいデザイン
+   - モーダルウィンドウ（JavaScriptなし）
+   - ページネーションのスタイリング
    ========================================================================== */
 
-/* CSS Variables */
+/* CSS Variables - 色とスタイルの統一管理 */
 :root {
-    --primary-color: #8b7355;
-    --primary-hover: #7a6344;
-    --text-color: #8B7969;
-    --background-color: #f8f6f3;
-    --white: #fff;
-    --light-gray: #fafafa;
-    --border-color: #ddd;
-    --accent-color: #007bff;
-    --error-color: #dc3545;
-    --success-color: #28a745;
-    --table-header-bg: #f8f6f3;
-    --table-row-hover: #f8f8f8;
+    /* ブランドカラー - 温かみのあるブラウン系 */
+    --primary-color: #8b7355;      /* メインカラー */
+    --primary-hover: #7a6344;      /* ホバー時の色 */
+    --text-color: #8B7969;         /* 基本テキスト色 */
+    
+    /* 背景色 */
+    --background-color: #f8f6f3;   /* ページ全体の背景 */
+    --white: #fff;                 /* 白色 */
+    --light-gray: #fafafa;         /* 薄いグレー */
+    
+    /* ボーダーとアクセント */
+    --border-color: #ddd;          /* ボーダー線の色 */
+    --accent-color: #007bff;       /* アクセント色（青） */
+    
+    /* 状態を表す色 */
+    --error-color: #dc3545;        /* エラー表示用（赤） */
+    --success-color: #28a745;      /* 成功表示用（緑） */
+    
+    /* テーブル専用色 */
+    --table-header-bg: #f8f6f3;    /* テーブルヘッダー背景 */
+    --table-row-hover: #f8f8f8;    /* テーブル行ホバー時 */
 }
 
 /* ==========================================================================
@@ -103,6 +127,30 @@ body {
     margin-bottom: 30px;
     text-align: center;
     color: var(--primary-color);
+}
+
+/* ==========================================================================
+   Alert Messages
+   ========================================================================== */
+
+.alert {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
 /* ==========================================================================
@@ -399,6 +447,134 @@ body {
 }
 
 /* ==========================================================================
+   Modal Styles - CSS-onlyモーダル実装
+   
+   このモーダルの特徴：
+   - JavaScriptを一切使用しない純粋なCSS実装
+   - :target疑似クラスを使用した表示制御
+   - 各お問い合わせごとに個別のモーダルHTML生成
+   - URLハッシュ（#modal-1など）による表示切り替え
+   
+   動作原理：
+   1. 「詳細」ボタン → <a href="#modal-1"> でURLハッシュ変更
+   2. :target疑似クラス → 該当IDのモーダルが display: block に
+   3. 「×」ボタン → <a href="#"> でハッシュクリア、モーダル非表示
+   
+   利点：
+   - JavaScriptなしでアクセシブル
+   - SEO対応（ブラウザ履歴に残る）
+   - 軽量で高速
+   ========================================================================== */
+
+/* モーダル基本スタイル - デフォルトは非表示 */
+.modal {
+    display: none;              /* 通常は非表示 */
+    position: fixed;            /* 画面に固定表示 */
+    z-index: 1000;             /* 最前面に表示 */
+    left: 0;
+    top: 0;
+    width: 100%;               /* 画面全体をカバー */
+    height: 100%;
+    overflow: auto;            /* コンテンツが多い場合のスクロール対応 */
+    background-color: rgba(0, 0, 0, 0.5);  /* 半透明の黒いオーバーレイ */
+}
+
+/* :target疑似クラス - URLハッシュが一致した時のみ表示 */
+.modal:target {
+    display: block;             /* 該当するIDがURLハッシュと一致した時に表示 */
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.modal-detail-panel {
+    padding: 40px 30px 30px 30px;
+}
+
+.modal-detail-row {
+    display: flex;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 50px;
+}
+
+.modal-detail-row:last-child {
+    border-bottom: none;
+}
+
+.modal-detail-label {
+    flex: 0 0 180px;
+    background-color: var(--background-color);
+    padding: 15px 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    border-right: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.modal-detail-value {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.modal-delete-section {
+    padding: 20px 30px;
+    text-align: center;
+    border-top: 1px solid #f0f0f0;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+/* ==========================================================================
    Responsive Design
    ========================================================================== */
 
@@ -450,5 +626,36 @@ body {
 
     .detail-value {
         flex: none;
+    }
+
+    /* Modal responsive styles */
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+
+    .modal-detail-panel {
+        padding: 20px 15px 15px 15px;
+    }
+
+    .modal-detail-row {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .modal-detail-label {
+        flex: none;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 10px 15px;
+    }
+
+    .modal-detail-value {
+        flex: none;
+        padding: 10px 15px;
+    }
+
+    .modal-delete-section {
+        padding: 15px;
     }
 }

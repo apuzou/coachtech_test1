@@ -1,3 +1,29 @@
+{{-- 
+    お問い合わせフォームのメインページ（index.blade.php）
+    
+    このファイルの役割：
+    - ユーザーがお問い合わせ内容を入力するためのフォーム画面を表示
+    - バリデーションエラーの表示
+    - セッションに保存された入力値の復元機能
+    - レスポンシブデザインによる各デバイス対応
+    
+    主な機能：
+    - 名前（姓・名）の入力フィールド
+    - 性別選択（ラジオボタン）
+    - メールアドレス入力
+    - 電話番号入力（3つのフィールドに分割）
+    - 住所入力
+    - 建物名入力（オプション）
+    - お問い合わせ種類選択（セレクトボックス）
+    - お問い合わせ内容入力（テキストエリア）
+    
+    技術的な特徴：
+    - Blade テンプレートエンジンを使用
+    - CSRF保護 (@csrf)
+    - バリデーションエラー表示 (@error)
+    - 古い入力値の復元 (old() ヘルパー、セッションデータ)
+    - 動的なオプション生成 (@foreach)
+--}}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -5,6 +31,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせフォーム</title>
+    {{-- お問い合わせフォーム用のCSSファイルを読み込み --}}
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 </head>
 
@@ -17,7 +44,9 @@
         <main class="contact-main">
             <h2 class="contact-title">Contact</h2>
 
+            {{-- お問い合わせフォーム：確認画面へのPOST送信 --}}
             <form class="contact-form" action="{{ route('contact.confirm') }}" method="POST">
+                {{-- CSRF攻撃を防ぐためのトークン（Laravel標準のセキュリティ機能） --}}
                 @csrf
                 <div class="form-group name-form-group">
                     <label class="form-label">

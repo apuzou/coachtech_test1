@@ -1,3 +1,28 @@
+{{-- 
+    お問い合わせ内容確認画面（confirm.blade.php）
+    
+    このファイルの役割：
+    - ユーザーが入力したお問い合わせ内容を確認画面で表示
+    - 修正が必要な場合は入力画面に戻る機能
+    - 確認後にお問い合わせを送信する機能
+    - 入力データの整形表示（性別の数値→テキスト変換など）
+    
+    主な機能：
+    - 入力されたすべての項目の表示
+    - 性別の数値を日本語に変換して表示
+    - 電話番号の整形表示
+    - 修正ボタン（入力画面に戻る）
+    - 送信ボタン（最終送信処理）
+    
+    技術的な特徴：
+    - セッションから取得した入力データ ($contactData) を表示
+    - 静的メソッド呼び出し (ContactController::getGenderText())
+    - 隠しフィールドでのデータ保持 (hidden input)
+    - CSRF保護
+    
+    データの流れ：
+    1. 入力画面 → 2. この確認画面 → 3. 送信完了画面
+--}}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -5,6 +30,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirm - FashionablyLate</title>
+    {{-- 基本スタイル（contact.css）と確認画面専用スタイル（confirm.css）を読み込み --}}
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
     <link rel="stylesheet" href="{{ asset('css/confirm.css') }}">
 </head>
@@ -21,7 +47,8 @@
             <div class="confirmation-panel">
                 <div class="confirmation-row">
                     <div class="confirmation-label">お名前</div>
-                    <div class="confirmation-value">{{ $contactData['last_name'] }} {{ $contactData['first_name'] }}
+                    <div class="confirmation-value">
+                        {{ $contactData['last_name'] }} {{ $contactData['first_name'] }}
                     </div>
                 </div>
 
