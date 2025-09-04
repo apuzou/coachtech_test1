@@ -33,23 +33,23 @@ docker-compose exec php bash
 
 コンテナ内で以下のコマンドを実行：
 
-# 依存関係のインストール
+**依存関係のインストール**
 
 composer install
 
-# 環境設定ファイルの作成
+**環境設定ファイルの作成**
 
 cp .env.example .env
 
-# アプリケーションキーの生成
+**アプリケーションキーの生成**
 
 php artisan key:generate
 
-# データベースマイグレーション
+**データベースマイグレーション**
 
 php artisan migrate
 
-# 初期データの投入
+**初期データの投入**
 
 php artisan db:seed
 
@@ -57,18 +57,18 @@ php artisan db:seed
 
 `.env` ファイルを以下のように設定してください：
 
-APP_NAME=ContactForm
-APP_ENV=local
-APP_KEY=（php artisan key:generate で自動生成）
-APP_DEBUG=true
-APP_URL=http://localhost
+-   APP_NAME=ContactForm
+-   APP_ENV=local
+-   APP_KEY=（php artisan key:generate で自動生成）
+-   APP_DEBUG=true
+-   APP_URL=http://localhost
 
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
+-   DB_CONNECTION=mysql
+-   DB_HOST=mysql
+-   DB_PORT=3306
+-   DB_DATABASE=laravel_db
+-   DB_USERNAME=laravel_user
+-   DB_PASSWORD=laravel_pass
 
 ## 使用技術
 
