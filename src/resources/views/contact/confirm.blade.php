@@ -19,9 +19,6 @@
     - 静的メソッド呼び出し (ContactController::getGenderText())
     - 隠しフィールドでのデータ保持 (hidden input)
     - CSRF保護
-    
-    データの流れ：
-    1. 入力画面 → 2. この確認画面 → 3. 送信完了画面
 --}}
 <!DOCTYPE html>
 <html lang="ja">

@@ -1,6 +1,6 @@
-{{-- 
+{{--
     お問い合わせフォームのメインページ（index.blade.php）
-    
+
     このファイルの役割：
     - ユーザーがお問い合わせ内容を入力するためのフォーム画面を表示
     - バリデーションエラーの表示
@@ -46,7 +46,6 @@
 
             {{-- お問い合わせフォーム：確認画面へのPOST送信 --}}
             <form class="contact-form" action="{{ route('contact.confirm') }}" method="POST">
-                {{-- CSRF攻撃を防ぐためのトークン（Laravel標準のセキュリティ機能） --}}
                 @csrf
                 <div class="form-group name-form-group">
                     <label class="form-label">
