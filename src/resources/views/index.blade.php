@@ -44,6 +44,13 @@
         <main class="contact-main">
             <h2 class="contact-title">Contact</h2>
 
+            {{-- エラーメッセージの表示 --}}
+            @if (session('error'))
+                <div class="alert alert-error">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             {{-- お問い合わせフォーム：確認画面へのPOST送信 --}}
             <form class="contact-form" action="{{ route('contact.confirm') }}" method="POST">
                 @csrf

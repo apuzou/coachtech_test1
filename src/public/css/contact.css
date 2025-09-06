@@ -28,7 +28,7 @@
 
 body {
     font-family: Georgia, 'Times New Roman', serif;
-    background-color: var(--background-color);
+    background-color: var(--white);
     color: var(--text-color);
     line-height: 1.6;
 }
@@ -36,11 +36,7 @@ body {
 /* ==========================================================================
    Layout Components
    ========================================================================== */
-
-.contact-container {
-    background-color: var(--white);
-}
-
+   
 /* Header */
 .header {
     text-align: center;
@@ -102,7 +98,17 @@ body {
 
 /* Form Inputs */
 .form-input,
-.form-select,
+.form-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    background-color: var(--light-gray);
+    transition: all 0.3s ease;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
 .form-textarea {
     width: 100%;
     padding: 12px 15px;
@@ -112,6 +118,8 @@ body {
     background-color: var(--light-gray);
     transition: all 0.3s ease;
     font-family: Georgia, 'Times New Roman', serif;
+    min-height: 120px;
+    resize: vertical;
 }
 
 .form-input:focus,
@@ -209,10 +217,23 @@ body {
     padding-right: 40px;
 }
 
-/* Textarea */
-.form-textarea {
-    min-height: 120px;
-    resize: vertical;
+
+/* ==========================================================================
+   Alert Messages
+   ========================================================================== */
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
 }
 
 /* ==========================================================================

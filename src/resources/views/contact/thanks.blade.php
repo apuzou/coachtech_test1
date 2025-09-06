@@ -10,11 +10,9 @@
 
 <body>
     <div class="background-text">Thank you</div>
-    <div class="container">
-        <div class="thanks-content">
-            <div class="main-message">お問い合わせありがとうございました</div>
-            <a href="{{ route('contact.index') }}" class="home-button">HOME</a>
-        </div>
+    <div class="thanks-content">
+        <div class="main-message">お問い合わせありがとうございました</div>
+        <a href="{{ route('contact.index') }}" class="home-button">HOME</a>
     </div>
 </body>
 

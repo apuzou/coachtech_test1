@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            AdminUserSeeder::class, // 0. 管理者アカウントを投入
             CategorySeeder::class,  // 1. お問い合わせの種類（カテゴリー）データを投入
             ContactSeeder::class,   // 2. テスト用お問い合わせデータを投入
         ]);

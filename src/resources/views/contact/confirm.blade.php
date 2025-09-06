@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <div class="confirm-container">
+    <div>
         <header class="header">
             <h1 class="brand">FashionablyLate</h1>
         </header>

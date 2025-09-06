@@ -83,8 +83,18 @@ class ContactController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // フォームデータを整理してお問い合わせデータを作成
-        $contactData = $this->prepareContactData($request);
+        // 確認画面からの送信時は、tellが既に結合された状態で送られてくる
+        $contactData = [
+            'category_id' => $request->category_id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'gender' => $request->gender,
+            'email' => $request->email,
+            'tell' => $request->tell, // 確認画面から直接送られてくる結合済みの電話番号
+            'address' => $request->address,
+            'building' => $request->building,
+            'detail' => $request->detail,
+        ];
 
         // データベースのcontactsテーブルに新しいレコードを作成・保存
         Contact::create($contactData);
